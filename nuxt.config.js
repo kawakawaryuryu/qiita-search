@@ -37,8 +37,9 @@ module.exports = {
   /*
    ** Nuxt.js dev-modules
    */
-  devModules: [
+  buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
+    '@nuxt/typescript-build',
     '@nuxtjs/eslint-module',
     '@nuxtjs/vuetify'
   ],
@@ -84,6 +85,5 @@ module.exports = {
      ** You can extend webpack config here
      */
     // extend(config, ctx) {}
-  },
-  buildModules: ['@nuxt/typescript-build']
+  }
 }
