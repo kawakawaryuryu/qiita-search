@@ -34,9 +34,11 @@ jobs:
       - restore_cache:
           keys:
             - v1-dist-{{ .Revision }}
-      - run: yarn global add now
       - run:
-          name: deploy now
+          name: install now
+          command: npm i -g now
+      - run:
+          name: deploy to now
           command: now -t ${ZEIT_TOKEN}
 
 workflows:
