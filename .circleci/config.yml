@@ -29,3 +29,12 @@ jobs:
 #      - checkout
 #      - run: yarn test
 
+workflows:
+  version: 2
+  pr:
+    jobs:
+      - build
+        filters:
+          branches:
+            ignore: master
+
