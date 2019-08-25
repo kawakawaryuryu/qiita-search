@@ -36,7 +36,7 @@ jobs:
             - v1-dist-{{ .Revision }}
       - run:
           name: install now
-          command: npm i -g --unsafe-perm now
+          command: sudo npm i -g --unsafe-perm now
       - run:
           name: deploy to now
           command: now -t ${ZEIT_TOKEN}
