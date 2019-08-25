@@ -21,13 +21,23 @@ jobs:
       - save_cache:
           paths:
             - dist
-          key: v1-dist-{{ .BuildNum }}
+          key: v1-dist-{{ .Revision }}
   deploy:
     docker:
       - image: circleci/node:10.13
     steps:
       - checkout
-      - run: yarn test
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - restore_cache:
+          keys:
+            - v1-dist-{{ .Revision }}
+      - run: yarn global now
+      - run:
+          name: deploy now
+          command: now -t ${ZEIT_TOKEN}
 
 workflows:
   version: 2
