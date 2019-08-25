@@ -5,7 +5,7 @@
         <logo />
         <vuetify-logo />
       </div>
-      <input id="tag" type="text" v-on:input="input($event.target.value)" />
+      <input id="tag" type="text" @input="input($event.target.value)" />
       <ul>
         <li v-for="article in articles" :key="article.id">
           {{ article.url }}
