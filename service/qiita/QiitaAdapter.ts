@@ -1,7 +1,11 @@
+import axios from '@nuxtjs/axios'
 import { QiitaArticle } from '~/service/qiita/QiitaArticle'
 
 export class QiitaAdapter {
-  public getItems(tag: string): QiitaArticle[] {
-    return [];
+  public async getItems(tag: string): Promise<QiitaArticle[]> {
+    const response = await axios.$get<QiitaArticle[]>(
+      `https://qiita.com/api/v2/tags/${tag}/items`
+    )
+    return response
   }
 }
