@@ -34,7 +34,7 @@ jobs:
       - restore_cache:
           keys:
             - v1-dist-{{ .Revision }}
-      - run: yarn global now
+      - run: yarn global add now
       - run:
           name: deploy now
           command: now -t ${ZEIT_TOKEN}
