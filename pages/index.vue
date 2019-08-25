@@ -5,6 +5,12 @@
         <logo />
         <vuetify-logo />
       </div>
+      <input id="tag" type="text" v-on:input="input($event.target.value)" />
+      <ul>
+        <li v-for="article in articles" :key="article.id">
+          {{ article.url }}
+        </li>
+      </ul>
       <v-card>
         <v-card-title class="headline">
           Welcome to the Vuetify + Nuxt.js template
@@ -62,14 +68,29 @@
   </v-layout>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator'
 import Logo from '~/components/Logo.vue'
 import VuetifyLogo from '~/components/VuetifyLogo.vue'
+import { QiitaAdapter } from '~/service/qiita/QiitaAdapter'
+import { QiitaArticle } from '~/service/qiita/QiitaArticle'
 
-export default {
+@Component({
   components: {
     Logo,
     VuetifyLogo
+  }
+})
+export default class Index extends Vue {
+  @Prop() private articles: QiitaArticle[] = []
+  private qiitaAdapter: QiitaAdapter = new QiitaAdapter()
+
+  public async created() {
+    this.articles = await this.qiitaAdapter.getItems('java')
+  }
+
+  public async input(tag: string) {
+    this.articles = await this.qiitaAdapter.getItems(tag)
   }
 }
 </script>
