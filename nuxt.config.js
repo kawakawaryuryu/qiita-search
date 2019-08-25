@@ -49,8 +49,17 @@ module.exports = {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    '@nuxtjs/proxy'
   ],
+  proxy: {
+    '/qiita': {
+      target: 'https://qiita.com',
+      pathRewrite: {
+        '^/qiita': ''
+      }
+    }
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
