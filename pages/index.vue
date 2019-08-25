@@ -7,7 +7,7 @@
       </div>
       <input id="tag" type="text" @input="input($event.target.value)" />
       <ul>
-        <li v-for="article in articles" :key="article.id">
+        <li v-for="article of articles" :key="article.id">
           {{ article.url }}
         </li>
       </ul>
@@ -69,7 +69,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
 import Logo from '~/components/Logo.vue'
 import VuetifyLogo from '~/components/VuetifyLogo.vue'
 import { QiitaAdapter } from '~/service/qiita/QiitaAdapter'
@@ -82,7 +82,7 @@ import { QiitaArticle } from '~/service/qiita/QiitaArticle'
   }
 })
 export default class Index extends Vue {
-  @Prop() private articles: QiitaArticle[] = []
+  private articles: QiitaArticle[] = []
   private qiitaAdapter: QiitaAdapter = new QiitaAdapter()
 
   public async created() {
