@@ -39,7 +39,7 @@ jobs:
           command: sudo npm i -g --unsafe-perm now
       - run:
           name: deploy to now
-          command: now -t ${ZEIT_TOKEN}
+          command: now -t ${ZEIT_TOKEN} -A now.json
 
 workflows:
   version: 2
