@@ -1,3 +1,4 @@
 {
-  "alias": "qiita-search.kawakawaryuryu"
+  "name": "qiita-search",
+  "scope": "kawakawaryuryu"
 }
